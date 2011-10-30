@@ -1,0 +1,5 @@
+guicavane (1.5.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Niv Sardi <xaiki@debian.org>  Sun, 30 Oct 2011 04:33:55 -0430

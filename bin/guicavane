@@ -9,7 +9,8 @@ Author: Gonzalo Garcia (A.K.A j0hn) <j0hn.com.ar@gmail.com>
 """
 
 import os
-import gtk
+from gi.repository import Gtk
+from gi.repository import Gdk
 import sys
 import gobject
 
@@ -37,11 +38,11 @@ def main():
     if sys.platform == "win32":
         gobject.threads_init()
     else:
-        gtk.gdk.threads_init()
+        Gdk.threads_init()
 
     # Starts main loop
     try:
-        gtk.main()
+        Gtk.main()
     except KeyboardInterrupt:
         pass
 

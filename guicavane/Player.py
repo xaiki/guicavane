@@ -6,7 +6,7 @@ Player. Handles the download and starts the player.
 """
 
 import os
-import gtk
+from gi.repository import Gtk
 import time
 import gobject
 import subprocess
@@ -37,7 +37,7 @@ class Player(object):
         self.file_path = os.path.join(self.file_path, self.get_filename())
 
         # Builder for the hosts selection
-        self.hosts_builder = gtk.Builder()
+        self.hosts_builder = Gtk.Builder()
         self.hosts_builder.add_from_file(HOSTS_GUI_FILE)
         self.hosts_builder.connect_signals(self)
 

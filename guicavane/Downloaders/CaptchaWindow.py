@@ -5,7 +5,7 @@
 Captcha Window. Utility to show an input window with a captcha image.
 """
 
-import gtk
+from gi.repository import Gtk
 import gobject
 
 from guicavane.Constants import CAPTCHA_GUI_FILE
@@ -25,7 +25,7 @@ class CaptchaWindow(object):
         self.gui_manager = gui_manager
         self.ok_callback = ok_callback
 
-        self.builder = gtk.Builder()
+        self.builder = Gtk.Builder()
         self.builder.add_from_file(CAPTCHA_GUI_FILE)
         self.builder.connect_signals(self)
 

@@ -5,7 +5,7 @@
 Settings. Manages the gui of the settings.
 """
 
-import gtk
+from gi.repository import Gtk
 import base64
 from Constants import SETTINGS_GUI_FILE
 
@@ -23,7 +23,7 @@ class SettingsDialog(object):
         """ Creates the window and initializes the attributes. """
 
         # Gtk builder
-        self.builder = gtk.Builder()
+        self.builder = Gtk.Builder()
         self.builder.add_from_file(SETTINGS_GUI_FILE)
         self.builder.connect_signals(self)
 

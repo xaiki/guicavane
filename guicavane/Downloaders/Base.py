@@ -6,8 +6,7 @@ Base Downloader. Every Downloader must be a subclass from this Downloader.
 """
 
 import os
-import gtk
-
+from gi.repository import Gtk
 
 class DownloadError(Exception):
     """ Indicates a downloading error. """
@@ -91,7 +90,7 @@ class BaseDownloader(object):
     @property
     def icon(self):
         if not self.__icon:
-            image = gtk.Image()
+            image = Gtk.Image()
             image.set_from_file(self.icon_path)
             self.__icon = image.get_pixbuf()
 

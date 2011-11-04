@@ -7,7 +7,9 @@ GuiManager. Takes care of the gui events.
 
 import os
 import sys
-import gtk
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GdkPixbuf
 import base64
 import urllib
 import webbrowser
@@ -43,7 +45,7 @@ class GuiManager(object):
         self.settings_dialog = SettingsDialog(self)
 
         # Gtk builder
-        self.builder = gtk.Builder()
+        self.builder = Gtk.Builder()
         self.builder.add_from_file(MAIN_GUI_FILE)
         self.builder.connect_signals(self)
 
@@ -63,7 +65,7 @@ class GuiManager(object):
             setattr(self, glade_object, self.builder.get_object(glade_object))
 
         # Set up the filter for the show list
-        self.name_list_model_filter = self.name_list_model.filter_new()
+        self.name_list_model_filter = self.name_list_model.filter_new(None)
         self.name_list_model_filter.set_visible_func(generic_visible_func,
             (self.name_filter, NAME_LIST_COLUMN_TEXT))
         self.name_list.set_model(self.name_list_model_filter)
@@ -322,7 +324,7 @@ class GuiManager(object):
         #self.save_config()
 
         # We kill gtk
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def _on_mode_change(self, *args):
         """ Called when the mode combobox changes value. """
@@ -389,7 +391,7 @@ class GuiManager(object):
         """ Called when the user presses a key in the name
         filter. It clears it out if the key is escape. """
 
-        key = gtk.gdk.keyval_name(event.keyval)
+        key = Gdk.keyval_name(event.keyval)
         if key == "Escape":
             self.name_filter.set_text("")
 
@@ -460,17 +462,17 @@ class GuiManager(object):
         """ Called when the user click on the download and
         play context menu item. """
 
-        chooser = gtk.FileChooserDialog(title="Dowload to...",
+        chooser = Gtk.FileChooserDialog(title="Dowload to...",
                   parent=self.main_window,
-                  action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-                  buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                  gtk.STOCK_SAVE, gtk.RESPONSE_OK))
+                  action=Gtk.FileChooserAction.SELECT_FOLDER,
+                  buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                  Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
 
         last_download_dir = self.config.get_key("last_download_directory")
         chooser.set_current_folder(last_download_dir)
         response = chooser.run()
 
-        if response != gtk.RESPONSE_OK:
+        if response != Gtk.ResponseType.OK:
             chooser.destroy()
             return
 
@@ -488,7 +490,7 @@ class GuiManager(object):
         chr_numbers = range(48, 57) + range(65, 91) + range(97, 123)
         acceptedchars = map(chr, chr_numbers)
 
-        key = gtk.gdk.keyval_name(event.keyval)
+        key = Gdk.keyval_name(event.keyval)
         if key in acceptedchars:
             self.name_filter.set_text(key)
             self.name_filter.grab_focus()
@@ -580,8 +582,7 @@ class GuiManager(object):
         path, _ = self.file_viewer.get_cursor()
         file_object = self.file_viewer_model[path][FILE_VIEW_COLUMN_OBJECT]
 
-        empty_case = gtk.gdk.pixbuf_new_from_file(IMAGE_CASE_EMPTY)
-        self.info_image.set_from_pixbuf(empty_case)
+        self.info_image.set_from_file(IMAGE_CASE_EMPTY)
 
         self.background_task(self.download_show_image, self.set_info_image,
                              file_object)
@@ -633,15 +634,15 @@ class GuiManager(object):
 
         image_path = result
 
-        pixbuf = gtk.gdk.pixbuf_new_from_file(image_path)
-        case = gtk.gdk.pixbuf_new_from_file(IMAGE_CASE)
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file(image_path)
+        case = GdkPixbuf.Pixbuf.new_from_file(IMAGE_CASE)
 
         width = pixbuf.props.width
         height = pixbuf.props.height
 
-        case = case.scale_simple(width, height, gtk.gdk.INTERP_BILINEAR)
+        case = case.scale_simple(width, height, GdkPixbuf.InterpType.BILINEAR)
         case.composite(pixbuf, 0, 0, width, height, 0, 0, 1.0, 1.0,
-                       gtk.gdk.INTERP_HYPER, 255)
+                       GdkPixbuf.InterpType.HYPER, 255)
 
         self.info_image.set_from_pixbuf(pixbuf)
 

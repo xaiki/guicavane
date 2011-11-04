@@ -9,7 +9,7 @@ Module with constants values.
 
 import os
 import sys
-import gtk
+from gi.repository import Gtk
 
 from Paths import GUI_DIR, IMAGES_DIR, SEP
 
@@ -43,15 +43,15 @@ HOSTS_VIEW_COLUMN_OBJECT = 2
 
 
 # Icons
-IMAGE_FOLDER = gtk.Image()
+IMAGE_FOLDER = Gtk.Image()
 IMAGE_FOLDER.set_from_file(IMAGES_DIR + SEP + "folder.png")
 ICON_FOLDER = IMAGE_FOLDER.get_pixbuf()
 
-IMAGE_FILE_MOVIE = gtk.Image()
+IMAGE_FILE_MOVIE = Gtk.Image()
 IMAGE_FILE_MOVIE.set_from_file(IMAGES_DIR + SEP + "video_file.png")
 ICON_FILE_MOVIE = IMAGE_FILE_MOVIE.get_pixbuf()
 
-IMAGE_FILE_MOVIE_MARK = gtk.Image()
+IMAGE_FILE_MOVIE_MARK = Gtk.Image()
 IMAGE_FILE_MOVIE_MARK.set_from_file(IMAGES_DIR + SEP + "video_file_mark.png")
 ICON_FILE_MOVIE_MARK = IMAGE_FILE_MOVIE_MARK.get_pixbuf()
 

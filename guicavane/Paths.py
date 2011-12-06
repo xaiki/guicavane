@@ -9,9 +9,11 @@ import tempfile
 SEP = os.sep
 
 if sys.platform == "win32":
+    HOME_DIR = os.path.join(os.environ["HOME"], "/.guicavane")
     MAIN_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     VLC_LOCATION = os.path.join(os.environ["ProgramFiles"], "VideoLAN", "VLC", "vlc.exe")
 else:
+    HOME_DIR = os.path.join(os.environ["HOME"], "/.guicavane")
     MAIN_DIR = os.path.dirname(__file__)
     VLC_LOCATION = "/usr/bin/vlc"
 

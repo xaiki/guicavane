@@ -2,20 +2,31 @@ Source: guicavane
 Section: x11
 Priority: extra
 Maintainer: Niv Sardi <xaiki@debian.org>
-Build-Depends: debhelper (>= 8.0.0)
+Build-Depends: debhelper (>= 8.0.0), python | python-all | python-dev | python-all-dev
 Standards-Version: 3.9.2
 Homepage: https://github.com/j0hn/guicavane.git
-#Vcs-Git: git://git.debian.org/collab-maint/guicavane.git
+Vcs-Git: git://github.com/xaiki/guicavane
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/guicavane.git;a=summary
 
 Package: guicavane
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, python
-Description: Graphical user interface for the cuevana.tv website.
+Description: Graphical user interface for the cuevana.tv and other website.
  Guicavane tries to bring to the desktop the functionality provided by
  the website www.cuevana.tv. That is the posibility to watch series
  and movies streaming from a free online storage server such as
  megaupload.
+ .
+ If initially written for Cuevana.tv, recent versions of guicavane
+ (1.6.0 and up), support a plethora of other movies-viewing websites:
+  * Cuevana
+  * Freevana
+  * Monterdivx
+  * Moviezet
+  * Nooo
+  * Pelispedia
+  * VerPelis
+ You can easily switch from one another in the interface.
  .
  Guicavane uses GTK toolkit for the frontend with Glade as ui design.
  For the backend uses a library made by Roger Duran, pycavane.

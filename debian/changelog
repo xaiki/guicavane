@@ -1,5 +1,11 @@
+guicavane (1.6.2-1) unstable; urgency=low
+
+  * New Upstream Version
+
+ -- Niv Sardi <xaiki@debian.org>  Fri, 16 Dec 2011 19:19:22 -0430
+
 guicavane (1.5.0-1) unstable; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release
 
  -- Niv Sardi <xaiki@debian.org>  Sun, 30 Oct 2011 04:33:55 -0430

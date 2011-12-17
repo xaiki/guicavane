@@ -9,7 +9,7 @@ Vcs-Git: git://github.com/xaiki/guicavane
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/guicavane.git;a=summary
 
 Package: guicavane
-Architecture: any
+Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, python
 Description: Graphical user interface for the cuevana.tv and other website.
  Guicavane tries to bring to the desktop the functionality provided by
